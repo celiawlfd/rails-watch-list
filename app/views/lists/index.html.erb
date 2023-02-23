@@ -1,16 +1,23 @@
-<h1>Your lists</h1>
+<div class="container">
+  <h1 class="my-4">Your lists</h1>
 
-<div>
-  <% @lists.each do |list| %>
-    <%= link_to list.name, list_path(list) %>
-  <% end %>
-</div>
+  <div class="d-flex">
+    <div class = "flew-grow-1" >
+      <% @lists.each do |list| %>
+        <div class="card card-body text-center">
+          <h5 class="card-title"><%= list.name %></h5>
+          <%= link_to "Open list", list_path(list), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
 
+    <div class = "card card-body">
+      <h3 class="text-center">Create a new list</h3>
+      <%= simple_form_for(@list) do |f|%>
+        <%= f.input :name, placeholder: "Create a new list" %>
+        <%= f.button :submit, "Create" %>
+      <% end %>
+    </div>
+  </div>
 
-<div>
-  <h3>Create a new list</h3>
-  <%= simple_form_for(@list) do |f|%>
-    <%= f.input :name %>
-    <%= f.submit "Create" %>
-  <% end %>
 </div>

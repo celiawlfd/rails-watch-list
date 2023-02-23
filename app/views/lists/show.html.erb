@@ -1,3 +1,9 @@
 <h1>Your list for <%= @list.name %></h1>
 
 <%= link_to '<<', lists_path %>
+
+<%= simple_form_for [@list, @bookmark] do |f|%>
+  <%= f.association :movie, collection: Movie.order(:title) %>
+  <%= f.input :comment %>
+  <%= f.submit %>
+<% end %>
