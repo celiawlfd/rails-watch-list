@@ -5,3 +5,27 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require "json"
+require "open-uri" # GEM to parse data from web
+
+url = "https://tmdb.lewagon.com/movie/top_rated"
+movies = JSON.parse(URI.open(url).read)
+
+Movie.destroy_all
+puts "creating movies"
+
+movies["results"].each do |movie|
+  movie = Movie.new(
+    title: movie['original_title'],
+    overview: movie['overview'],
+    poster_url: "https://image.tmdb.org/t/p/original/#{movie['poster_path']}",
+    rating: movie['vote_average']
+  )
+  movie.save!
+
+  puts "creating movie #{movie.id}, #{movie.title}"
+end
+
+puts "done"
+

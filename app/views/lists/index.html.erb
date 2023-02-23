@@ -1,0 +1,16 @@
+<h1>Your lists</h1>
+
+<div>
+  <% @lists.each do |list| %>
+    <%= link_to list.name, list_path(list) %>
+  <% end %>
+</div>
+
+
+<div>
+  <h3>Create a new list</h3>
+  <%= simple_form_for(@list) do |f|%>
+    <%= f.input :name %>
+    <%= f.submit "Create" %>
+  <% end %>
+</div>
