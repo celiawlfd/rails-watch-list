@@ -1,9 +1,28 @@
-<h1>Your list for <%= @list.name %></h1>
+<div class="container">
+  <h1>Your list for <%= @list.name %></h1>
 
-<%= link_to '<<', lists_path %>
+  <%= link_to '<<', lists_path %>
+  <div class="d-flex">
+    <div class="m-3">
+      <h3>Movies</h3>
+      <div class="d-flex">
+          <% @bookmarks.each do |bookmark| %>
+            <div class="card card-body m-3">
+              <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, width: 200  %>
+              <h5><%= bookmark.movie.title %></h5>
+              <p><%= bookmark.comment %></p>
+            </div>
+          <% end %>
+      </div>
+    </div>
 
-<%= simple_form_for [@list, @bookmark] do |f|%>
-  <%= f.association :movie, collection: Movie.order(:title) %>
-  <%= f.input :comment %>
-  <%= f.submit %>
-<% end %>
+    <div class="card card-body m-3">
+      <h3>Add a movie to your list</h3>
+      <%= simple_form_for [@list, @bookmark] do |f|%>
+        <%= f.association :movie, collection: Movie.order(:title) %>
+        <%= f.input :comment %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
