@@ -1,5 +1,5 @@
 <div class = "p-3 mb-2 bg-dark text-white">
-  <%= link_to '<<', lists_path, class: "btn-back" %>
+  <%= link_to '<< Back to lists', lists_path, class: "button btn-back" %>
   <div class="text-center">
     <h1 class="mt-4"><%= @list.name %></h1>
     <h3 class="mb-4 opacity-75">Movies</h3>
@@ -8,8 +8,8 @@
 
 <div class="container">
 
-  <div class="d-flex justify-content-between flex-wrap-reverse flex-md-nowrap mt-4">
-    <div class="cards">
+  <div class="row mt-4">
+    <div class="col-12 col-lg-8">
       <% @list.bookmarks.each do |bookmark| %>
         <div class="card mb-3 shadow-sm" style="max-width: 700px;">
           <div class="row g-0">
@@ -28,7 +28,7 @@
                 <div>
                   <p class="card-text"><i class="fa-solid fa-quote-left"></i><%= bookmark.comment %></p>
                 </div>
-                <%= link_to bookmark_path(bookmark), class: "btn-delete",
+                <%= link_to bookmark_path(bookmark), class: "button btn-delete",
                     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
                     <i class="fa-solid fa-trash-can"></i><span> Delete</span>
                 <% end %>
@@ -39,7 +39,7 @@
       <% end %>
     </div>
 
-    <div class="ms-3 mb-3">
+    <div class="col-12 col-lg-4">
       <div class="card card-body shadow-sm add-movie ">
         <h3>Add a movie to your list</h3>
         <%= simple_form_for [@list, @bookmark] do |f|%>

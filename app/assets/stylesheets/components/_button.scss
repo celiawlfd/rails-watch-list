@@ -1,9 +1,17 @@
-.btn-delete {
+a {
   text-decoration: none !important;
+
+}
+
+.btn-delete {
   color: red !important;
 }
 
 .btn-back {
-  text-decoration: none !important;
   color: gray;
+
+  &:hover {
+    color: white;
+  }
 }
+// probleemmmm
