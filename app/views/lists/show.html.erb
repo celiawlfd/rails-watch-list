@@ -40,7 +40,7 @@
     </div>
 
     <div class="ms-3 mb-3">
-      <div class="card card-body shadow-sm add-movie">
+      <div class="card card-body shadow-sm add-movie ">
         <h3>Add a movie to your list</h3>
         <%= simple_form_for [@list, @bookmark] do |f|%>
           <%= f.association :movie, collection: Movie.order(:title) %>
