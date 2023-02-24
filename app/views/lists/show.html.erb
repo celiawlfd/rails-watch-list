@@ -1,28 +1,53 @@
-<div class="container">
-  <h1>Your list for <%= @list.name %></h1>
+<div class = "p-3 mb-2 bg-dark text-white">
+  <%= link_to '<<', lists_path, class: "btn-back" %>
+  <div class="text-center">
+    <h1 class="mt-4"><%= @list.name %></h1>
+    <h3 class="mb-4 opacity-75">Movies</h3>
+  </div>
+</div>
 
-  <%= link_to '<<', lists_path %>
-  <div class="d-flex">
-    <div class="m-3">
-      <h3>Movies</h3>
-      <div class="d-flex">
-          <% @bookmarks.each do |bookmark| %>
-            <div class="card card-body m-3">
-              <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, width: 200  %>
-              <h5><%= bookmark.movie.title %></h5>
-              <p><%= bookmark.comment %></p>
+<div class="container">
+
+  <div class="d-flex justify-content-between flex-wrap-reverse flex-md-nowrap mt-4">
+    <div class="cards">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="card mb-3 shadow-sm" style="max-width: 700px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, class: "card-img-top img-fluid rounded-start"  %>
             </div>
-          <% end %>
-      </div>
+            <div class="col-md-8 d-flex justify-content-between flex-column">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div class="flex-grow-1">
+                  <h5 class="card-title"><%= bookmark.movie.title %></h5>
+                  <p class="card-text"><%= bookmark.movie.rating %><i class="fa-solid fa-star"></i></p>
+                  <p class="card-text text-muted"><%= bookmark.movie.overview %></p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between card-footer align-items-center my-3">
+                <div>
+                  <p class="card-text"><i class="fa-solid fa-quote-left"></i><%= bookmark.comment %></p>
+                </div>
+                <%= link_to bookmark_path(bookmark), class: "btn-delete",
+                    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                    <i class="fa-solid fa-trash-can"></i><span> Delete</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
 
-    <div class="card card-body m-3">
-      <h3>Add a movie to your list</h3>
-      <%= simple_form_for [@list, @bookmark] do |f|%>
-        <%= f.association :movie, collection: Movie.order(:title) %>
-        <%= f.input :comment %>
-        <%= f.submit %>
-      <% end %>
+    <div class="ms-3 mb-3">
+      <div class="card card-body shadow-sm add-movie">
+        <h3>Add a movie to your list</h3>
+        <%= simple_form_for [@list, @bookmark] do |f|%>
+          <%= f.association :movie, collection: Movie.order(:title) %>
+          <%= f.input :comment %>
+          <%= f.submit "Add to my list", class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
