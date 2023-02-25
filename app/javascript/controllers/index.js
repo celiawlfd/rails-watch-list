@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import ListcardController from "./listcard_controller"
 application.register("listcard", ListcardController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)
