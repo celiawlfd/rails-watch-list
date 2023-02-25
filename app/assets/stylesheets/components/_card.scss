@@ -1,0 +1,19 @@
+.rounded {
+  --bs-border-radius: 15px !important;
+}
+
+.list-image {
+  transition: all 0.3s;
+}
+
+.list-card {
+  h5 {
+    color: black;
+  }
+}
+
+.list-card:hover {
+  .list-image {
+    border-radius: 15px;
+  }
+}

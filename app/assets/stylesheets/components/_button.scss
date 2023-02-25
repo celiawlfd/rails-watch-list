@@ -1,17 +1,26 @@
 a {
   text-decoration: none !important;
-
+  color: gray;
 }
 
 .btn-delete {
-  color: red !important;
+  &:hover {
+    color: red !important;
+  }
 }
 
 .btn-back {
-  color: gray;
-
+  display: block;
+  margin-top: 10px;
+  margin-left: 6px;
+  position: sticky !important;
+  z-index:50;
+  top: 76px;
   &:hover {
-    color: white;
+    color: black;
   }
+}
+
+.button {
 }
 // probleemmmm
