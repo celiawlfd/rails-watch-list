@@ -21,10 +21,10 @@
                 <div class="flex-grow-1">
                   <h5 class="card-title"><%= bookmark.movie.title %></h5>
                   <p class="card-text"><%= bookmark.movie.rating %><i class="fa-solid fa-star"></i></p>
-                  <p class="card-text text-muted"><%= bookmark.movie.overview %></p>
+                  <p class="card-text text-muted"><%= bookmark.movie.overview[0..300] %>...</p>
                 </div>
               </div>
-              <div class="d-flex justify-content-between card-footer align-items-center my-3">
+              <div class="d-flex justify-content-between card-footer align-items-center mb-3">
                 <div>
                   <p class="card-text"><i class="fa-solid fa-quote-left"></i><%= bookmark.comment %></p>
                 </div>
